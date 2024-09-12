@@ -1,10 +1,5 @@
-import { Container } from "@/shared/ui/Container";
-import { TopBar } from "@/widgets/TopBar";
+import { MainPage } from "@/pages/MainPage";
 
 export default function Home() {
-  return (
-    <Container className="mt-10">
-      <TopBar />
-    </Container>
-  );
+  return <MainPage />;
 }

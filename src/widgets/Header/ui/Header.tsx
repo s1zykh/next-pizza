@@ -12,7 +12,7 @@ interface HeaderProps {
 export const Header = (props: HeaderProps) => {
   const { className } = props;
   return (
-    <header className={cn("border-b", className)}>
+    <header className={cn("border-b ", className)}>
       <Container className="flex items-center justify-between py-8">
         <div className="flex items-center gap-4">
           <Image src={"/logo.png"} alt="Logo" width={35} height={35} />
