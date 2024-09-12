@@ -1,5 +1,4 @@
 import React from "react";
-import { cn } from "@/shared/lib/cn";
 import { Container } from "@/shared/ui/Container";
 import { Title } from "@/shared/ui/Title";
 import { PizzaCategoriesTabs } from "@/features/PizzaCategoriesTabs";
@@ -10,7 +9,6 @@ interface TopBarProps {
 }
 
 export const TopBar = (props: TopBarProps) => {
-  const { className } = props;
   return (
     <>
       <Container className="mt-10">
