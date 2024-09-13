@@ -1,1 +1,2 @@
-export { PizzaFiltersCheckbox } from "./ui/PizzaFiltersCheckbox/PizzaFiltersCheckbox";
+export { PizzaFilterCheckbox } from "./ui/PizzaFilterCheckbox/PizzaFilterCheckbox";
+export { PizzaFilterRange } from "./ui/PizzaFilterRange/PizzaFilterRange";

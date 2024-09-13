@@ -1,4 +1,4 @@
-import { PizzaFiltersCheckbox } from "@/features/PizzaFilters";
+import { PizzaFilterRange, PizzaFilterCheckbox } from "@/features/PizzaFilters";
 import { cn } from "@/shared/lib/cn";
 import { Title } from "@/shared/ui/Title";
 
@@ -10,13 +10,25 @@ export const Filters = (props: FiltersProps) => {
   const { className } = props;
 
   return (
-    <div className={cn(className)}>
-      <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
-      <PizzaFiltersCheckbox
+    <div className={cn("flex flex-col gap-7", className)}>
+      <Title text="Фильтрация" size="sm" className="font-bold" />
+      <PizzaFilterCheckbox
         items={[
           { text: "Можно собирать", value: "1" },
           { text: "Новинки", value: "2" },
         ]}
+      />
+      <PizzaFilterRange />
+      <PizzaFilterCheckbox
+        items={[
+          { text: "Сырный соус", value: "1" },
+          { text: "Моцарелла", value: "2" },
+          { text: "Чеснок", value: "1" },
+          { text: "Солённые огурчики", value: "2" },
+          { text: "Красный лук", value: "1" },
+          { text: "Томаты", value: "2" },
+        ]}
+        title="Ингредиенты"
       />
     </div>
   );
