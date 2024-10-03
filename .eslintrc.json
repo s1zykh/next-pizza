@@ -1,7 +1,21 @@
 {
   "extends": [
     "next/core-web-vitals",
+    "prettier",
     "next/typescript",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "import/order": [
+      2,
+      {
+        "groups": [
+          ["builtin", "external"],
+          ["internal", "parent", "sibling", "index", "object", "type"]
+        ],
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
