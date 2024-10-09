@@ -7,10 +7,11 @@ import { cn } from "@/shared/lib/cn";
 
 interface TopBarProps {
    className?: string;
+   categoryActiveId: number;
 }
 
 export const TopBar = (props: TopBarProps) => {
-   const { className } = props;
+   const { className, categoryActiveId } = props;
    return (
       <div
          className={cn(
@@ -19,7 +20,7 @@ export const TopBar = (props: TopBarProps) => {
          )}
       >
          <Container className="flex items-center justify-between">
-            <PizzaCategoriesTabs />
+            <PizzaCategoriesTabs categoryActiveId={categoryActiveId} />
             <PizzaSortPopup />
          </Container>
       </div>

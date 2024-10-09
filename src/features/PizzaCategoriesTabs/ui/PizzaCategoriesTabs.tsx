@@ -4,20 +4,20 @@ import { cn } from "@/shared/lib/cn";
 
 interface PizzaCategoriesTabsProps {
    className?: string;
+   categoryActiveId: number;
 }
 const cast = [
-   "Пиццы",
-   "Комбо",
-   "Закуски",
-   "Коктейли",
-   "Кофе",
-   "Напитки",
-   "Десерты",
+   { id: 1, name: "Пиццы" },
+   { id: 2, name: "Комбо" },
+   { id: 3, name: "Закуски" },
+   { id: 4, name: "Коктейли" },
+   { id: 5, name: "Кофе" },
+   { id: 6, name: "Напитки" },
+   { id: 7, name: "Десерты" },
 ];
-const activeIndex = 0;
 
 export const PizzaCategoriesTabs = (props: PizzaCategoriesTabsProps) => {
-   const { className } = props;
+   const { className, categoryActiveId } = props;
    return (
       <div
          className={cn(
@@ -25,15 +25,15 @@ export const PizzaCategoriesTabs = (props: PizzaCategoriesTabsProps) => {
             className,
          )}
       >
-         {cast.map((name, i) => (
+         {cast.map(({ name, id }, i) => (
             <a
                key={name}
                className={cn(
                   "flex items-center font-bold h-11 rounded-2xl px-5",
-                  activeIndex === i &&
+                  categoryActiveId === id &&
                      "bg-white shadow-md shadow-gray-200 text-primary",
                )}
-               href=""
+               href={`/#${name}`}
             >
                {name}
             </a>

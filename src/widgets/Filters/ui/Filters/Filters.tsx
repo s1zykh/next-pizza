@@ -60,6 +60,7 @@ export const Filters = (props: FiltersProps) => {
             ]}
             limit={6}
             title="Ингредиенты"
+            searchInputPlaceholder="Поиск"
          />
       </div>
    );

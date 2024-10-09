@@ -5,6 +5,7 @@ import { FilterCheckbox } from "@/shared/ui/FilterCheckbox";
 import { Title } from "@/shared/ui/Title";
 import { FilterChecboxProps } from "@/shared/ui/FilterCheckbox";
 import { Input } from "@/shared/ui/shadcnUI";
+import { useSearch } from "@/shared/lib/hooks/useSearch";
 
 interface PizzaFiltersCheckboxProps {
    className?: string;
@@ -43,7 +44,9 @@ export const PizzaFilterCheckbox: React.FC<PizzaFiltersCheckboxProps> = (
 
    const [showAll, setShowAll] = useState<boolean>(false);
 
-   const list = showAll ? items : defaultValue?.slice(0, limit);
+   const { setTextInput, filteredItems } = useSearch(items);
+
+   const list = showAll ? filteredItems : defaultValue?.slice(0, limit);
 
    return (
       <div className={className}>
@@ -55,6 +58,7 @@ export const PizzaFilterCheckbox: React.FC<PizzaFiltersCheckboxProps> = (
                <Input
                   placeholder={searchInputPlaceholder}
                   className="bg-gray-50 border-none"
+                  onChange={(e) => setTextInput(e.target.value)}
                />
             </div>
          )}

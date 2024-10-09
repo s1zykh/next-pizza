@@ -1,17 +1,20 @@
 import { useState, useMemo } from "react";
 
 import { FilterChecboxProps } from "@/shared/types";
-function useSearch(items: FilterChecboxProps[]) {
-   const [query, setQuery] = useState<string>("");
+
+export function useSearch(items: FilterChecboxProps[]) {
+   const [textInput, setTextInput] = useState<string>("");
 
    const filteredItems = useMemo(() => {
-      if (!query) return items;
+      if (!textInput) return items;
 
       return items.filter((item) =>
-         item.value.toString().toLowerCase().includes(query.toLowerCase()),
+         item.text
+            .toString()
+            .toLowerCase()
+            .includes(textInput.toLocaleLowerCase()),
       );
-   }, [items, query]);
+   }, [items, textInput]);
 
-   return { query, setQuery, filteredItems };
+   return { textInput, setTextInput, filteredItems };
 }
-export default useSearch;
