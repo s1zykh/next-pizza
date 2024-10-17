@@ -1,2 +1,2 @@
-export { FilterCheckbox } from "./ui/FilterCheckbox";
-export type { FilterChecboxProps } from "./ui/FilterCheckbox.tsx";
+export { FilterCheckbox } from "./FilterCheckbox";
+export type { FilterChecboxProps } from "./FilterCheckbox";

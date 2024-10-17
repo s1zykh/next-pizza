@@ -1,5 +1,5 @@
 import { FilterChecboxProps } from "@/shared/types";
-import { Checkbox } from "../../shadcnUI";
+import { Checkbox } from "../shadcnUI";
 
 export const FilterCheckbox: React.FC<FilterChecboxProps> = ({
    text,
