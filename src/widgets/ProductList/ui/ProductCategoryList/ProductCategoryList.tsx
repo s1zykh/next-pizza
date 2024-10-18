@@ -3,13 +3,11 @@
 import React, { useEffect, useRef } from "react";
 import { useIntersection } from "react-use";
 
-import { useCategoryStore } from "@/pages/ProductsPage/model/useCategoryStore";
 import { cn } from "@/shared/lib/cn";
 import { Title } from "@/shared/ui/Title";
-import { ProductListItem } from "../ProductListItem/ProductListItem";
-import { ProductListItemProps } from "../ProductListItem/ProductListItem";
+import { ProductListItem, ProductListItemProps } from "@/entities/Product";
 
-interface ProductListProps {
+interface ProductCategoryListProps {
    className?: string;
    title: string;
    items: ProductListItemProps[];
@@ -18,7 +16,7 @@ interface ProductListProps {
    setActiveCategoryId: (activeId: number) => void;
 }
 
-export const ProductList = (props: ProductListProps) => {
+export const ProductCategoryList = (props: ProductCategoryListProps) => {
    const {
       className,
       title,
@@ -45,7 +43,7 @@ export const ProductList = (props: ProductListProps) => {
          <Title text={title} size="lg" className="font-extrabold mb-5" />
 
          <div className={cn("grid grid-cols-3 gap-[50px]", listClassName)}>
-            {items.map((product, i) => (
+            {items.map((product) => (
                <ProductListItem
                   key={product.id}
                   id={product.id}

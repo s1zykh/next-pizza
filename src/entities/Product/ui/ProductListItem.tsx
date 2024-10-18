@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Plus } from "lucide-react";
 
 import { Title } from "@/shared/ui/Title";
-import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui/shadcnUI";
 
 export interface ProductListItemProps {
