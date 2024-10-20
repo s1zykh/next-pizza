@@ -1,2 +1,2 @@
-export { ProductListItem } from "./ui/ProductListItem";
-export type { ProductListItemProps } from "./ui/ProductListItem";
+export { ProductListItem } from "./ui/product-item";
+export type { ProductListItemProps } from "./ui/product-item";

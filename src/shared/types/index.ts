@@ -1,1 +1,1 @@
-export type { FilterChecboxProps } from "./filterCheckboxType";
+export type { FilterChecboxProps } from "./checkbox-filter-type";
