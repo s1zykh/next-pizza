@@ -2,9 +2,12 @@
 
 import React, { useRef, useState } from "react";
 import { Search } from "lucide-react";
-import { useClickAway } from "react-use";
+import { useClickAway, useDebounce } from "react-use";
 import Link from "next/link";
+import { Product } from "@prisma/client";
+import Image from "next/image";
 
+import { Api } from "../../api/axios/api-client";
 import { cn } from "@/shared/lib/cn";
 
 interface SearchInputProps {
@@ -15,12 +18,27 @@ export const SearchInput = (props: SearchInputProps) => {
    const { className } = props;
 
    const [focused, setFocused] = useState<boolean>(false);
+   const [searchQuery, setSearchQuery] = useState("");
+   const [products, setProducts] = useState<Product[]>([]);
 
    const ref = useRef(null);
 
    useClickAway(ref, () => {
       setFocused(false);
    });
+   useDebounce(
+      () => {
+         Api.product.productSearch(searchQuery).then((res) => setProducts(res));
+      },
+      100,
+      [searchQuery],
+   );
+
+   const onClickItem = () => {
+      setFocused(false);
+      setSearchQuery("");
+      setProducts([]);
+   };
 
    return (
       <>
@@ -39,18 +57,35 @@ export const SearchInput = (props: SearchInputProps) => {
                className="rounded-2xl outline-none w-full bg-gray-50 pl-11"
                placeholder="Найти продукт..."
                onFocus={() => setFocused(true)}
+               value={searchQuery}
+               onChange={(e) => setSearchQuery(e.target.value)}
             />
 
-            <div
-               className={cn(
-                  "absolute w-full bg-white rounded-xl py-2 top-14 shodow-md transition-all duration-200 invisible opacity-0 z-30",
-                  focused && "visible opacity-100 top-12",
-               )}
-            >
-               <Link href={"/search"}>
-                  <div className="px-3 py-2 hover:bg-primary/10"></div>
-               </Link>
-            </div>
+            {products.length > 0 && (
+               <div
+                  className={cn(
+                     "absolute w-full bg-white rounded-xl py-2 top-14 shodow-md transition-all duration-200 invisible opacity-0 z-30",
+                     focused && "visible opacity-100 top-12",
+                  )}
+               >
+                  {products.map((product) => (
+                     <Link
+                        onClick={onClickItem}
+                        href={`/product/${product.id}`}
+                        key={product.id}
+                        className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10"
+                     >
+                        <Image
+                           alt={product.name}
+                           src={product.imageUrl}
+                           width={30}
+                           height={30}
+                        />
+                        <span>{product.name}</span>
+                     </Link>
+                  ))}
+               </div>
+            )}
          </div>
       </>
    );
