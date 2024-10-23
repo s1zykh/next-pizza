@@ -1,9 +1,12 @@
+"use client";
+
 import {
    PizzaFilterRange,
    PizzaFilterCheckbox,
 } from "@/features/product/product-filter";
 import { cn } from "@/shared/lib/cn";
 import { Title } from "@/shared/ui/title";
+import { useFilterIngredients } from "@/shared/lib/hooks/useFilterIngredients";
 
 interface FiltersProps {
    className?: string;
@@ -11,7 +14,11 @@ interface FiltersProps {
 
 export const Filters = (props: FiltersProps) => {
    const { className } = props;
-
+   const { ingredients } = useFilterIngredients();
+   const filteredIngredients = ingredients.map((item) => ({
+      value: String(item.id),
+      text: item.name,
+   }));
    return (
       <div className={cn("flex flex-col gap-7", className)}>
          <Title text="Фильтрация" size="sm" className="font-bold" />
@@ -27,40 +34,8 @@ export const Filters = (props: FiltersProps) => {
          />
          <PizzaFilterRange />
          <PizzaFilterCheckbox
-            items={[
-               { text: "Сырный соус", value: "1" },
-               { text: "Моцарелла", value: "2" },
-               { text: "Чеснок", value: "1" },
-               { text: "Солённые огурчики", value: "2" },
-               { text: "Красный лук", value: "1" },
-               { text: "Томаты", value: "2" },
-               { text: "Сырный соус", value: "1" },
-               { text: "Моцарелла", value: "2" },
-               { text: "Чеснок", value: "1" },
-               { text: "Солённые огурчики", value: "2" },
-               { text: "Красный лук", value: "1" },
-               { text: "Томаты", value: "2" },
-               { text: "Сырный соус", value: "1" },
-               { text: "Моцарелла", value: "2" },
-               { text: "Чеснок", value: "1" },
-               { text: "Солённые огурчики", value: "2" },
-               { text: "Красный лук", value: "1" },
-               { text: "Томаты", value: "2" },
-               { text: "Сырный соус", value: "1" },
-               { text: "Моцарелла", value: "2" },
-               { text: "Чеснок", value: "1" },
-               { text: "Солённые огурчики", value: "2" },
-               { text: "Красный лук", value: "1" },
-               { text: "Томаты", value: "2" },
-            ]}
-            defaultValue={[
-               { text: "Сырный соус", value: "1" },
-               { text: "Моцарелла", value: "2" },
-               { text: "Чеснок", value: "1" },
-               { text: "Солённые огурчики", value: "2" },
-               { text: "Красный лук", value: "1" },
-               { text: "Томаты", value: "2" },
-            ]}
+            items={filteredIngredients}
+            defaultValue={filteredIngredients.slice(0, 6)}
             limit={6}
             title="Ингредиенты"
             searchInputPlaceholder="Поиск"

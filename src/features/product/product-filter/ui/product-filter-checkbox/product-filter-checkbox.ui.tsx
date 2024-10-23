@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 
 import { FilterCheckbox } from "@/shared/ui/checkbox-filter";
@@ -18,11 +19,11 @@ interface PizzaFiltersCheckboxProps {
 }
 
 const PizzaFilterCheckboxItems = (items: FilterChecboxProps[]) => {
-   return items.map((item, index) => (
+   return items.map((item) => (
       <FilterCheckbox
          text={item.text}
          value={item.value}
-         key={`${item.text}-${item.value}-${index}`}
+         key={`${item.name}-${item.value}`}
          endAdornment={item.endAdornment}
          checked={false}
          onCheckedChange={() => console.log("1")}

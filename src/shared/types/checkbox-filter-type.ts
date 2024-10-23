@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
 export interface FilterChecboxProps {
-   text: string;
+   name?: string;
+   text?: string;
    value: string;
    key?: string;
    endAdornment?: ReactNode;
